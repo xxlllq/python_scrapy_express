@@ -16,7 +16,7 @@ import time
 sheet_one= xlrd.open_workbook('C:/Users/andy/Desktop/python/python_test.xlsx').sheet_by_index(0)
 
 
-# 访问的URL
+# 请求的公共URL
 url_address='https://sp0.baidu.com/9_Q4sjW91Qh3otqbppnN2DJv/pae/channel/data/asyncqury?cb=jQuery110204914333994305038_1509696342371&appid=4001&com=ems&nu='
 # 访问头
 header = {
@@ -30,15 +30,18 @@ header = {
 
 for item in sheet_one.col_values(3):
    if item !='':
+       # 拼接订单号至URL中，获取请求返回数据
        req = requests.get(url_address +''+ item,headers =header)
+       # 正则匹配需要的数据
        str_data = re.findall(".*\((.*)\).*", str(req.content))[0]
+       # 转换编码
        msg = str_data.encode().decode('unicode_escape')
        try:
            jn = json.loads(msg)
            c = jn['data']['info']['context']
            for i in c:
+               # 通过JSON装换后获取具体录像数据，并输出到控制台
                print(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(int(i['time'])))+" "+ i['desc'])
-
        except :
            c =1
 
