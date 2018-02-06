@@ -24,7 +24,7 @@ header = {
      'Accept-Encoding':'gzip, deflate, br',
      'Accept-Language':'zh-CN,zh;q=0.8',
      'Connection':'keep-alive',
-     'Cookie':'',
+     'Cookie':'',# 从自己浏览器获得Cookie
      'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36'
 }
 
